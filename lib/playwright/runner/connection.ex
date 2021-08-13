@@ -61,7 +61,7 @@ defmodule Playwright.Runner.Connection do
   # - ...in fact, any related Catalog changes are side-effects, likely delivered via an Event.
   @spec post(pid(), Channel.Command.t()) :: term()
   def post(connection, command) do
-    GenServer.call(connection, {:post, {:cmd, command}})
+    GenServer.call(connection, {:post, {:cmd, command}}, 60_000 * 5)
   end
 
   # Transport-bound.
